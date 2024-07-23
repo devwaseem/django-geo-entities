@@ -16,6 +16,7 @@ class GeoRegionAdmin(admin.ModelAdmin):  # type: ignore
 
 @admin.register(GeoSubRegion)
 class GeoSubRegionAdmin(admin.ModelAdmin):  # type: ignore
+    list_select_related = ["region"]
     list_display = ["name", "region"]
     list_filter = ["region"]
     list_per_page = 20
@@ -23,6 +24,7 @@ class GeoSubRegionAdmin(admin.ModelAdmin):  # type: ignore
 
 @admin.register(GeoCountry)
 class GeoCountryAdmin(admin.ModelAdmin):  # type: ignore
+    list_select_related = ["region", "subregion"]
     list_display = ["name", "iso3", "iso2", "currency", "region", "subregion"]
     list_filter = ["region", "subregion"]
     list_per_page = 20
@@ -43,7 +45,7 @@ class GeoCityAdmin(admin.ModelAdmin):  # type: ignore
     list_per_page = 20
 
     def country_display(self, obj: GeoCity) -> str:
-        return obj.state.country.name
+        return str(obj.state.country.name)
 
     def region_display(self, obj: GeoCity) -> str:
         if (
@@ -51,5 +53,5 @@ class GeoCityAdmin(admin.ModelAdmin):  # type: ignore
             and (country := state.country)
             and (region := country.region)
         ):
-            return region.name
+            return str(region.name)
         return "-"
