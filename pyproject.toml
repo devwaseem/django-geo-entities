@@ -21,6 +21,7 @@ packages = [{ include = 'django_geo_entities' }]
 [tool.poetry.dependencies]
 python = ">=3.9"
 Django = ">=3.2"
+django-rich = "^1.9.0"
 
 
 [build-system]
