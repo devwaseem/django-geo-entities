@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-geo-entities"
-version = "0.1.1"
+version = "0.1.2"
 description = "Simple Django Models for Geo Entities"
 authors = ["Waseem Akram <waseem07799@gmail.com>"]
 license = "MIT"
